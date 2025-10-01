@@ -18,12 +18,12 @@ import {
 import StackedLineChart from '@/Pages/LandingV2/StatisticVillage/charts/StackedLineChart.vue';
 import FormPopulationCategory from '@/Components/custom/statistics/FormPopulationCategory.vue';
 
-defineProps({
-    title: String,
-    surveyID: String,
-    category: String,
-    chartData: Object,
-})
+defineProps<{
+    title: string,
+    surveyID: string,
+    category: string,
+    chartData: any,
+}>()
 
 const showDialog = ref<boolean>(false);
 const selectedId = ref<string | null>(null);

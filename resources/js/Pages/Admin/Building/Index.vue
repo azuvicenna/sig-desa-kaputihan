@@ -17,8 +17,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
 import BuildingTable from '@/Components/custom/building/BuildingTable.vue';
 
 interface Props {
-  title: string
-  categoryID: string
+  title: string;
+  categoryID: string;
 }
 
 defineProps<Props>()

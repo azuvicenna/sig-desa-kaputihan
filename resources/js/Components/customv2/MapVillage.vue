@@ -6,9 +6,9 @@ import type { Feature, GeoJsonObject } from 'geojson';
 import type { Location, GeoJSONProperties } from './types';
 
 const props = withDefaults(defineProps < {
-  height?: number
+  height?: string
 } > (), {
-  height: 500
+  height: '500'
 });
 
 const style = computed(() => ({

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Input } from '@/Components/ui/input'
 import { ref } from 'vue'
-import { router } from '@inertiajs/vue3'
 
 const search = ref<string>('')
 

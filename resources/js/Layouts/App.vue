@@ -8,23 +8,22 @@ import {
 
 import MainNav from '@/Components/custom/MainNav.vue'
 import Search from '@/Components/custom/Search.vue'
-import DarkMode from '@/Components/custom/DarkMode.vue'
 import UserNav from '@/Components/custom/UserNav.vue'
 import Alert from '@/Components/custom/Alert.vue'
 import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
+import { usePage } from '@inertiajs/vue3'
 
+const page = usePage<any>()
 </script>
 
 <template>
     <div class="flex-col md:flex">
         <div class="border-b">
             <div class="flex h-16 items-center px-4">
-                <!-- <TeamSwitcher /> -->
                 <MainNav class="mx-6" />
                 <div class="ml-auto flex items-center space-x-4">
                     <Search />
-                    <DarkMode />
-                    <UserNav @open-dialog="openDialog" />
+                    <UserNav />
                 </div>
             </div>
         </div>
@@ -32,14 +31,14 @@ import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
             <div class="flex items-center justify-between space-y-2">
                 <slot name="header"></slot>
             </div>
-            <div v-if="$page.props.flash.success" class="alert">
-                <Alert background="green">{{ $page.props.flash.success }}</Alert>
+            <div v-if="page.props.flash.success" class="alert">
+                <Alert background="green">{{ page.props.flash.success }}</Alert>
             </div>
-            <div v-if="$page.props.flash.failed" class="alert">
-                <Alert background="red">{{ $page.props.flash.failed }}</Alert>
+            <div v-if="page.props.flash.failed" class="alert">
+                <Alert background="red">{{ page.props.flash.failed }}</Alert>
             </div>
-            <Tabs :default-value="$page.url !== '/bangunan' ? 'overview' : 'ibadah'" class="space-y-4">
-                <TabsList v-if="$page.url === '/bangunan'">
+            <Tabs :default-value="page.url !== '/bangunan' ? 'overview' : 'ibadah'" class="space-y-4">
+                <TabsList v-if="page.url === '/bangunan'">
                     <TabsTrigger value="ibadah">
                         Ibadah
                     </TabsTrigger>
@@ -65,12 +64,12 @@ import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
                         Lainnya
                     </TabsTrigger>
                 </TabsList>
-                <div v-if="$page.url !== '/bangunan'">
+                <div v-if="page.url !== '/bangunan'">
                     <TabsContent value="overview" class="space-y-4">
                         <slot></slot>
                     </TabsContent>
                 </div>
-                <div v-if="$page.url === '/bangunan'">
+                <div v-if="page.url === '/bangunan'">
                     <TabsContent value="ibadah" class="space-y-4">
                         <BuildingTable category="ibadah" />
                         <slot></slot>
@@ -108,5 +107,3 @@ import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
         </div>
     </div>
 </template>
-
-<style scoped></style>

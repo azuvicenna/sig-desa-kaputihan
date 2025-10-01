@@ -8,7 +8,6 @@ import * as z from 'zod';
 import { router } from '@inertiajs/vue3';
 import { Trash2Icon } from 'lucide-vue-next';
 
-// Definisikan tipe data untuk props
 interface Photo {
     id: string;
     nama_file: string;
@@ -19,19 +18,15 @@ const props = defineProps<{
     buildingID: string;
 }>();
 
-// --- STATE MANAGEMENT ---
 const buildingPhotos = ref<Photo[]>([]);
 const previewUrls = ref<string[]>([]);
 const fileInput = ref<HTMLInputElement | null>(null);
 const isUploading = ref(false);
 
-// Inisialisasi galeri saat komponen dimuat
 onMounted(() => {
-    // 1. PERBAIKAN: Tambahkan fallback jika props kosong untuk menghindari error
     buildingPhotos.value = props.initialBuildingPhotos || [];
 });
 
-// --- VALIDATION (Zod + VeeValidate) ---
 const formSchema = toTypedSchema(z.object({
     images: z.any()
         .refine((files) => files && files.length > 0, 'Anda harus memilih setidaknya satu gambar.')
@@ -48,7 +43,6 @@ const { handleSubmit, setFieldValue, setErrors, resetForm } = useForm({
     }
 });
 
-// --- FILE HANDLING ---
 function triggerFileInput() {
     console.log('Tombol "Pilih Gambar" diklik!');
     console.log('Isi dari fileInput ref:', fileInput.value);
@@ -63,7 +57,6 @@ function handleFileChange(event: Event) {
     previewUrls.value = files.map((file) => URL.createObjectURL(file));
 }
 
-// --- FORM SUBMISSION ---
 const onUpload = handleSubmit((values) => {
     router.post(route('admin.storeBuildingImages', props.buildingID), values, {
         // 2. PERBAIKAN: Tambahkan onStart dan onFinish untuk mengelola state loading
@@ -83,7 +76,6 @@ const onUpload = handleSubmit((values) => {
     });
 });
 
-// Cleanup memory
 onBeforeUnmount(() => {
     previewUrls.value.forEach(URL.revokeObjectURL);
 });

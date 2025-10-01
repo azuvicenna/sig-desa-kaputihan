@@ -18,12 +18,12 @@ import {
 import BarChart from '@/Pages/LandingV2/StatisticVillage/charts/BarChart.vue';
 import FormFacility from '@/Components/custom/statistics/FormFacility.vue';
 
-defineProps({
-    title: String,
-    surveyID: String,
-    category: String,
-    chartData: Object,
-})
+defineProps<{
+    title: string,
+    surveyID: string,
+    category: string,
+    chartData: any,
+}>()
 
 const showDialog = ref<boolean>(false);
 const selectedId = ref<string | null>(null);

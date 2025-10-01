@@ -16,11 +16,11 @@ import {
     FormMessage,
 } from '@/Components/ui/form'
 
-const props = defineProps({
-    title: String,
-    id: String,
-    survey: Object,
-})
+const props = defineProps<{
+    title: string,
+    id: string,
+    survey: any,
+}>()
 
 const formSchema = toTypedSchema(z.object({
     tahun_survey: z.number({

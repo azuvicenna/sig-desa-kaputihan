@@ -14,7 +14,6 @@ interface LoginForm {
   password: string | null;
 }
 
-// 2. Gunakan interface pada useForm
 const form = useForm<LoginForm>({
   login: null,
   password: null,

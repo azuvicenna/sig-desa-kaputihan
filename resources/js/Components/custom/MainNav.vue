@@ -1,37 +1,39 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import { Link } from '@inertiajs/vue3'
+import { Link, usePage } from '@inertiajs/vue3'
+
+const page = usePage()
 </script>
 
 <template>
   <div class="w-full overflow-x-auto whitespace-nowrap">
     <nav :class="cn('flex items-center space-x-4 lg:space-x-6', $attrs.class ?? '')">
       <Link :href="route('admin.dashboard')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/dashboard') }">
+        :class="{ 'text-muted-foreground': !page.url.startsWith('/dashboard') }">
       Dashboard
       </Link>
       <Link :href="route('admin.schedule')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/jadwal-kegiatan-desa') }">
+        :class="{ 'text-muted-foreground': !page.url.startsWith('/jadwal-kegiatan-desa') }">
       Jadwal
       </Link>
       <Link :href="route('admin.statistics')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/statistik-data-desa') }">
+        :class="{ 'text-muted-foreground': !page.url.startsWith('/statistik-data-desa') }">
       Statistik
       </Link>
       <Link :href="route('admin.category')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/kategori-bangunan') }">
+        :class="{ 'text-muted-foreground': !page.url.startsWith('/kategori-bangunan') }">
       Kategori
       </Link>
       <Link :href="route('admin.userManagement')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/manajemen-pengguna') }">
+        :class="{ 'text-muted-foreground': !page.url.startsWith('/manajemen-pengguna') }">
       Pengguna
       </Link>
       <Link :href="route('admin.report', 'Dikirim')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/laporan-masuk') }">
+        :class="{ 'text-muted-foreground': !page.url.startsWith('/laporan-masuk') }">
       Laporan
       </Link>
       <Link :href="route('admin.setting')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/pengaturan-desa') }">
+        :class="{ 'text-muted-foreground': !page.url.startsWith('/pengaturan-desa') }">
       Pengaturan
       </Link>
     </nav>

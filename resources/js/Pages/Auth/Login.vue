@@ -2,9 +2,9 @@
 import UserAuthForm from '@/Components/custom/auth/UserAuthForm.vue'
 import { Head } from '@inertiajs/vue3';
 
-defineProps({
-  title: String
-})
+defineProps<{
+  title: string
+}>()
 </script>
 
 <template>

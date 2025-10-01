@@ -17,9 +17,9 @@ import {
 import FormStatistics from '@/Components/custom/statistics/FormStatistics.vue';
 import axios from 'axios';
 
-defineProps({
-  title: String
-})
+defineProps<{
+  title: string
+}>()
 
 const showDialog = ref(false);
 const selectedId = ref(null);

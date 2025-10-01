@@ -2,7 +2,7 @@
 import App from '@/Layouts/App.vue'
 import { Head, router } from '@inertiajs/vue3'
 import { ref, onMounted, onUnmounted } from 'vue'
-import MapVillage from '@/Components/custom/landing/MapVillage.vue'
+import MapVillage from '@/Components/customv2/MapVillage.vue';
 import MapTable from '@/Components/custom/dashboard/MapTable.vue'
 import FormLocation from '@/Components/custom/dashboard/FormLocation.vue'
 import {
@@ -22,10 +22,10 @@ import {
     AlertDialogAction
 } from "@/Components/ui/alert-dialog";
 
-defineProps({
-    title: String,
-    data: Object
-})
+defineProps<{
+    title: string,
+    data: any,
+}>()
 
 const currentYear: number = new Date().getFullYear()
 
@@ -254,7 +254,7 @@ onUnmounted(() => {
         </div>
         <br>
         <div class="w-full">
-            <MapVillage height="500" />
+            <MapVillage height="800" />
         </div>
         <br>
         <MapTable />

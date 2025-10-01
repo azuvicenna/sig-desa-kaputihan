@@ -17,9 +17,9 @@ import {
 } from "@/Components/ui/alert-dialog";
 import FormSchedule from '@/Components/custom/schedule/FormSchedule.vue';
 
-defineProps({
-    title: String
-})
+defineProps<{
+    title: string
+}>()
 
 const showDialog = ref<boolean>(false);
 const selectedId = ref<string | null>(null);

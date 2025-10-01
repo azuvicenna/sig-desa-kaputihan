@@ -16,7 +16,7 @@ import { useForm } from 'vee-validate'
 import * as z from 'zod'
 import { inject } from 'vue';
 
-const user = inject('user')
+const user = inject<any>('user')
 
 const formSchema = toTypedSchema(z.object({
     nama: z.string({ message: 'Nama wajib di isi' })

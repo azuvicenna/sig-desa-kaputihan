@@ -4,9 +4,9 @@ import App from '@/Layouts/App.vue';
 import FormEdit from '@/Components/custom/profile/FormEdit.vue';
 import FormPassword from '@/Components/custom/profile/FormPassword.vue';
 
-defineProps({
-    title: String
-})
+defineProps<{
+    title: string
+}>()
 </script>
 
 <template>

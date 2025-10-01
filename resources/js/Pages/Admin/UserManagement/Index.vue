@@ -16,9 +16,9 @@ import {
   AlertDialogAction
 } from "@/Components/ui/alert-dialog";
 
-defineProps({
-  title: String
-})
+defineProps<{
+  title: string
+}>()
 
 const redirectToEdit = (id) => {
   router.visit(route('admin.userEdit', id), {

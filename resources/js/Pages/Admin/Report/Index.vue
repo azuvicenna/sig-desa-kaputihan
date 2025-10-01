@@ -17,7 +17,7 @@ import Table from '@/Components/custom/report/Table.vue';
 
 defineProps<{
   title: string,
-  status: string;
+  status: string,
 }>();
 
 const statuses = ['Dikirim', 'Diverifikasi', 'Diproses', 'Selesai', 'Ditolak'];

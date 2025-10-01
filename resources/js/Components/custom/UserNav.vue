@@ -4,7 +4,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from '@/Components/ui/avatar'
-import { Button } from '@/Components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,7 +28,7 @@ import { Link, usePage, router } from '@inertiajs/vue3'
 import { computed } from 'vue'
 
 const page = usePage()
-const user = computed(() => page.props.auth.user)
+const user = computed<any>(() => page.props.auth.user)
 
 const initial = (): string => {
   const names = user.value.nama.split(' ');

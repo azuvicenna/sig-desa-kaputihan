@@ -4,9 +4,9 @@ import { Head, Link } from '@inertiajs/vue3'
 import Button from '@/components/ui/button/Button.vue';
 import CreateUser from '@/Components/custom/user-management/CreateUser.vue';
 
-defineProps({
-    title: String
-})
+defineProps<{
+    title: string
+}>()
 </script>
 
 <template>

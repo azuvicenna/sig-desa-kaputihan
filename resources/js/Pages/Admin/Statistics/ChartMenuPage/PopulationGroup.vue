@@ -18,11 +18,11 @@ import {
 import WorldPopulationChart from '@/Pages/LandingV2/StatisticVillage/charts/WorldPopulationChart.vue';
 import FormPopulationGroup from '@/Components/custom/statistics/FormPopulationGroup.vue';
 
-defineProps({
-    title: String,
-    surveyID: String,
-    chartData: Object,
-})
+defineProps<{
+    title: string,
+    surveyID: string,
+    chartData: any,
+}>()
 
 const showDialog = ref<boolean>(false);
 const selectedId = ref<string | null>(null);

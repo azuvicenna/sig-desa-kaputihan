@@ -23,10 +23,10 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
 
-const props = defineProps({
-    title: String,
-    report: Object,
-})
+const props = defineProps<{
+    title: string,
+    report: any,
+}>()
 
 const statusClasses = computed(() => {
     switch (props.report.status) {

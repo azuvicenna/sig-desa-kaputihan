@@ -18,11 +18,11 @@ import {
 import PieChart from '@/Pages/LandingV2/StatisticVillage/charts/PieChart.vue';
 import FormOccupation from '@/Components/custom/statistics/FormOccupation.vue';
 
-defineProps({
-    title: String,
-    surveyID: String,
-    chartData: Object,
-})
+defineProps<{
+    title: string,
+    surveyID: string,
+    chartData: any,
+}>()
 
 const showDialog = ref<boolean>(false);
 const selectedId = ref<string | null>(null);

@@ -4,10 +4,10 @@ import { Head, Link } from '@inertiajs/vue3'
 import Button from '@/components/ui/button/Button.vue';
 import EditCategory from '@/Components/custom/category/EditCategory.vue';
 
-defineProps({
-    title: String,
-    category: Object,
-})
+defineProps<{
+    title: string,
+    category: object,
+}>()
 
 </script>
 

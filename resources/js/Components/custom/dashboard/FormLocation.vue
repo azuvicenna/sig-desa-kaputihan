@@ -8,7 +8,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/Components/ui/dialog'
-import { Button } from '@/Components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
     FormControl,
     FormField,

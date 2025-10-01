@@ -5,8 +5,8 @@ import Button from '@/components/ui/button/Button.vue'
 import CreateBuilding from '@/Components/custom/building/CreateBuilding.vue'
 
 interface Props {
-  title: string
-  categoryID: string
+  title: string;
+  categoryID: string;
 }
 
 defineProps<Props>()

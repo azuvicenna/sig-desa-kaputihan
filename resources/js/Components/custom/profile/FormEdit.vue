@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { router, usePage } from '@inertiajs/vue3'
-import { Button } from '@/Components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
     FormControl,
     FormField,
@@ -9,7 +9,6 @@ import {
     FormMessage,
 } from '@/Components/ui/form'
 import { Input } from '@/Components/ui/input'
-
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
@@ -24,7 +23,7 @@ const formSchema = toTypedSchema(z.object({
 
 defineProps<{ errors: Record<string, string> }>()
 
-const page = usePage()
+const page = usePage<any>()
 const user = computed(() => page.props.auth.user)
 
 const { values, isFieldDirty, handleSubmit, setErrors } = useForm({
@@ -44,8 +43,6 @@ const onSubmit = handleSubmit((values) => {
         }
     })
 })
-
-
 </script>
 
 <template>
