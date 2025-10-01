@@ -32,6 +32,10 @@ const page = usePage()
         :class="{ 'text-muted-foreground': !page.url.startsWith('/laporan-masuk') }">
       Laporan
       </Link>
+      <Link :href="route('admin.news')" class="text-sm font-medium transition-colors hover:text-primary"
+        :class="{ 'text-muted-foreground': !page.url.startsWith('/berita') }">
+      Berita
+      </Link>
       <Link :href="route('admin.setting')" class="text-sm font-medium transition-colors hover:text-primary"
         :class="{ 'text-muted-foreground': !page.url.startsWith('/pengaturan-desa') }">
       Pengaturan

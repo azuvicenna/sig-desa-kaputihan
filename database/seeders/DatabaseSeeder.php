@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         StatPopulationCategorySeeder::run();
         StatPopulationGroupSeeder::run();
         ReportSeeder::run();
+        NewsSeeder::run();
     }
 }

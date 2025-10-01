@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ScheduleController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Datatable\CategoryDatatableController;
 use App\Http\Controllers\Datatable\FacilityDatatableController;
 use App\Http\Controllers\Datatable\GeneralDatatableController;
 use App\Http\Controllers\Datatable\LocationDatatableController;
+use App\Http\Controllers\Datatable\NewsDatatableController;
 use App\Http\Controllers\Datatable\OccupationDatatableController;
 use App\Http\Controllers\Datatable\PopuCategoryDatatableController;
 use App\Http\Controllers\Datatable\PopuGroupDatatableController;
@@ -115,6 +117,10 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             Route::delete('hapus-pengguna/{id}', 'destroy')->name('userDestroy');
         });
 
+        Route::prefix('berita')->controller(NewsController::class)->group(function(){
+            Route::get('/', 'index')->name('news');
+        });
+
         Route::prefix('profile')->controller(ProfileController::class)->group(function () {
             Route::get('/', 'index')->name('profile');
             Route::post('edit-profile', 'editProfile')->name('editProfile');
@@ -151,6 +157,10 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
         Route::get(
             'daftar-pengguna',
             [UserDatatableController::class, 'getUsers']
+        )->name('users');
+        Route::get(
+            'daftar-berita/{status}',
+            [NewsDatatableController::class, 'getNews']
         )->name('users');
 
 
