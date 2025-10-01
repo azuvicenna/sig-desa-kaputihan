@@ -1,7 +1,7 @@
-<script setup>
-defineProps({
-    villageProfile: Object
-});
+<script setup lang="ts">
+import { Properties } from './types';
+
+defineProps<Properties>();
 </script>
 
 <template>
@@ -48,7 +48,7 @@ defineProps({
                                                     Suhu Rata-rata
                                                 </h3>
                                                 <p>
-                                                    Suhu rata-rata {{ villageProfile.suhu_rata_rata }} derajat celcius.
+                                                    Suhu rata-rata {{ dataProps.suhu_rata_rata }} derajat celcius.
                                                 </p>
                                             </div>
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="100">
@@ -59,7 +59,7 @@ defineProps({
                                                     Lokasi Elevasi
                                                 </h3>
                                                 <p>
-                                                    Desa Kaputihan berada di ketinggian {{ villageProfile.lokasi_elevasi }}.
+                                                    Desa Kaputihan berada di ketinggian {{ dataProps.lokasi_elevasi }}.
                                                 </p>
                                             </div>
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="200">
@@ -70,7 +70,7 @@ defineProps({
                                                     Luas Wilayah
                                                 </h3>
                                                 <p>
-                                                    Luas wilayah Desa Kaputihan berkisar {{ villageProfile.luas_wilayah }}
+                                                    Luas wilayah Desa Kaputihan berkisar {{ dataProps.luas_wilayah }}
                                                 </p>
                                             </div>
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="300">
@@ -81,7 +81,7 @@ defineProps({
                                                     Lokasi Desa
                                                 </h3>
                                                 <p>
-                                                    {{ villageProfile.alamat_desa }}
+                                                    {{ dataProps.alamat_desa }}
                                                 </p>
                                             </div>
                                         </div>

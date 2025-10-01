@@ -1,12 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import LandingV2 from '@/Layouts/LandingV2.vue';
 import { Head } from '@inertiajs/vue3';
+import type { PagePropsDetailBuilding } from '../types';
 
-defineProps({
-    title: String,
-    detailBuilding: Object,
-    buildingPhotos: Object
-});
+defineProps<PagePropsDetailBuilding>();
 </script>
 
 <template>

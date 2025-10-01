@@ -1,11 +1,11 @@
-<script setup>
-defineProps({
-    count: Object
-});
+<script setup lang="ts">
+import type { Properties } from './types';
+
+defineProps<Properties>();
 </script>
 
 <template>
-    <section class="section howitworks__v1" id="count-village">
+    <section class="section howitworks__v1" id="dataProps-village">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md-6 text-center mx-auto">
@@ -30,7 +30,7 @@ defineProps({
                                 src="/landingv2/images/arch-line.svg">
                         </div>
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
-                            {{ count.jumlah_dusun }}
+                            {{ dataProps.jumlah_dusun }}
                         </span>
                         <div>
                             <h3 class="fs-5 mb-4">Jumlah Dusun</h3>
@@ -48,7 +48,7 @@ defineProps({
                                 src="/landingv2/images/arch-line-reverse.svg">
                         </div>
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
-                            {{ count.jumlah_rw }}
+                            {{ dataProps.jumlah_rw }}
                         </span>
                         <h3 class="fs-5 mb-4">Jumlah RW</h3>
                         <p>
@@ -63,7 +63,7 @@ defineProps({
                                 src="/landingv2/images/arch-line.svg">
                         </div>
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
-                            {{ count.jumlah_rt }}
+                            {{ dataProps.jumlah_rt }}
                         </span>
                         <h3 class="fs-5 mb-4">Jumlah RT</h3>
                         <p>
@@ -75,7 +75,7 @@ defineProps({
                     <div
                         class="step-card last text-center h-100 d-flex flex-column justify-content-start position-relative">
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
-                            {{ count.jumlah_penduduk }}
+                            {{ dataProps.jumlah_penduduk }}
                         </span>
                         <div>
                             <h3 class="fs-5 mb-4">Jumlah Penduduk</h3>

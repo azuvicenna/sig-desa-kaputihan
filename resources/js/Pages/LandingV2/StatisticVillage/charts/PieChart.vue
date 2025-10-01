@@ -1,11 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import * as echarts from 'echarts';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref, type Component } from 'vue';
+import type { PagePropsWithData } from '../../types';
 
-const props = defineProps({
-    title: String,
-    data: Object,
-})
+const props = defineProps<PagePropsWithData>()
 
 // 1. Gunakan 'ref' untuk menampung elemen DOM chart.
 //    Ini cara yang lebih deklaratif dan aman di Vue.

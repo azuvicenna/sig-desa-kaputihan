@@ -1,11 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import * as echarts from 'echarts';
 import { onMounted, onUnmounted, ref } from 'vue';
+import type { PagePropsWithData } from '../../types';
 
-const props = defineProps({
-    title: String,
-    data: Object,
-})
+const props = defineProps<PagePropsWithData>()
 
 console.log(props.data);
 

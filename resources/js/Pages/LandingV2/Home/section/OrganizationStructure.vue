@@ -1,7 +1,7 @@
-<script setup>
-defineProps({
-    organization: String
-});
+<script setup lang="ts">
+defineProps < {
+    organization: string
+} > ();
 </script>
 
 <template>
@@ -11,7 +11,7 @@ defineProps({
                 <div class="col-md-12">
                     <div class="img-wrap position-relative">
                         <img class="img-fluid rounded-4"
-                            :src="organization ? `/storage/${organization}` : '/placeholder/organisasi.png'"
+                            :src="organization ? `/storage/foto_organisasi/${organization}` : '/placeholder/organisasi.png'"
                             data-aos="fade-up" data-aos-delay="0">
                     </div>
                 </div>

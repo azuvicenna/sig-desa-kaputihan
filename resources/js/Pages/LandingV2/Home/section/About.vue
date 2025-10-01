@@ -1,7 +1,7 @@
-<script setup>
-defineProps({
-    data: Object
-});
+<script setup lang="ts">
+import type { Properties } from './types';
+
+defineProps<Properties>();
 </script>
 
 <template>
@@ -11,8 +11,7 @@ defineProps({
                 <div class="col-md-6 order-md-2">
                     <div class="row justify-content-end">
                         <div class="col-md-11 mb-4 mb-md-0">
-                            <span class="subtitle text-uppercase mb-3"
-                                data-aos="fade-up" data-aos-delay="0">
+                            <span class="subtitle text-uppercase mb-3" data-aos="fade-up" data-aos-delay="0">
                                 Tentang Desa Kaputihan
                             </span>
                             <h2 class="mb-4" data-aos="fade-up" data-aos-delay="100">Sejarah nama Desa Kaputihan</h2>
@@ -49,10 +48,10 @@ defineProps({
                             </div>
                             <div>
                                 <h3 class="text-uppercase fw-bold">
-                                    Kepala Desa Kaputihan Periode {{ data.periode }}
+                                    Kepala Desa Kaputihan Periode {{ dataProps.periode }}
                                 </h3>
                                 <p class="fs-6 mb-0">
-                                    {{ data.pesan_kades }}
+                                    {{ dataProps.pesan_kades }}
                                 </p>
                             </div>
                         </div>

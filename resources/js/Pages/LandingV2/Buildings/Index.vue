@@ -1,30 +1,25 @@
-<script setup>
+<script setup lang="ts">
 import LandingV2 from '@/Layouts/LandingV2.vue';
 import { Head, router, Link } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import debounce from 'lodash/debounce';
 import Pagination from '@/Components/customv2/Pagination.vue';
+import type { PagePropsBuilding } from '../types';
 
-const props = defineProps({
-    title: String,
-    buildings: Object,
-    filters: Object
-});
+const props = defineProps<PagePropsBuilding>();
+const search = ref<string>(props.filters.search);
 
-let search = ref(props.filters.search);
-
-watch(search, debounce(value => {
+watch(search, debounce((value: string) => { 
     router.get(route('landing.buildings'), { search: value }, {
         preserveState: true,
         replace: true
     })
 }, 300));
 
-function cropText(text, limit) {
+function cropText(text: string, limit: number): string { 
     if (text.length > limit) {
         return text.substring(0, limit) + '...';
     }
-
     return text;
 }
 </script>

@@ -1,6 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
+
+const page = usePage<any>()
 
 const form = useForm({
     nama_pelapor: '',
@@ -10,6 +12,13 @@ const form = useForm({
     pesan_laporan: '',
     'g-recaptcha-response': '',
 });
+
+declare global {
+    interface Window {
+        grecaptcha: any; 
+        onRecaptchaLoad: (() => void) | null; 
+    }
+}
 
 const recaptchaContainer = ref(null);
 let widgetId = null;
@@ -69,8 +78,8 @@ const submit = () => {
                     </p>
                 </div>
             </div>
-            <div v-if="$page.props.flash.success" class="alert alert-success mb-4" role="alert">
-                {{ $page.props.flash.success }}
+            <div v-if="page.props.flash.success" class="alert alert-success mb-4" role="alert">
+                {{ page.props.flash.success }}
             </div>
             <form @submit.prevent="submit">
                 <div class="row">

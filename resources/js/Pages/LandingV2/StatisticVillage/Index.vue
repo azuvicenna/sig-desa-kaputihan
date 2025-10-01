@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import LandingV2 from '@/Layouts/LandingV2.vue';
 import PieChart from '@/Pages/LandingV2/StatisticVillage/charts/PieChart.vue';
@@ -7,12 +7,11 @@ import WorldPopulationChart from '@/Pages/LandingV2/StatisticVillage/charts/Worl
 import StackedLineChart from '@/Pages/LandingV2/StatisticVillage/charts/StackedLineChart.vue';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
+import type { PageProps } from '../types';
 
-defineProps({
-    title: String
-});
+defineProps < PageProps > ();
 
-let chartsData = ref([]);
+let chartsData = ref < any > ([]);
 
 onMounted(async () => {
     try {
@@ -28,8 +27,7 @@ onMounted(async () => {
 
     <Head>
         <title>{{ title }}</title>
-        <meta name="description"
-            content="Informasi grafik statistik desa kaputihan dalam bentuk chart interaktif">
+        <meta name="description" content="Informasi grafik statistik desa kaputihan dalam bentuk chart interaktif">
     </Head>
     <LandingV2>
         <section class="services__v3 section" id="home">

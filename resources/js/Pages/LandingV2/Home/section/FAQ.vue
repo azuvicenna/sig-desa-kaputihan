@@ -22,7 +22,7 @@
                                         aria-controls="panelsStayOpen-collapseOne"> Apa itu aplikasi SIG Desa Kaputihan? </button>
                                 </h2>
                                 <div class="accordion-collapse collapse show" id="panelsStayOpen-collapseOne">
-                                    <div class="accordion-body">SID Desa Kaputihan adalah platform digital yang menyajikan informasi geografis (spasial) mengenai wilayah Desa Kaputihan. Aplikasi ini berfungsi sebagai peta interaktif yang menampilkan lokasi-lokasi penting seperti fasilitas umum, batas wilayah, statistik desa, dan data kependudukan yang mudah diakses.</div>
+                                    <div class="accordion-body">SIG Desa Kaputihan adalah platform digital yang menyajikan informasi geografis (spasial) mengenai wilayah Desa Kaputihan. Aplikasi ini berfungsi sebagai peta interaktif yang menampilkan lokasi-lokasi penting seperti fasilitas umum, batas wilayah, statistik desa, dan data kependudukan yang mudah diakses.</div>
                                 </div>
                             </div>
                             <div class="accordion-item">

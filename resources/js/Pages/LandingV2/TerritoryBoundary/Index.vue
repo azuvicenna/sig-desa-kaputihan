@@ -1,11 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { Head } from '@inertiajs/vue3'
 import LandingV2 from '@/Layouts/LandingV2.vue';
 import MapVillage from '@/Components/customv2/MapVillage.vue';
+import { PageProps } from '../types';
 
-defineProps({
-    title: String
-})
+defineProps<PageProps>()
 </script>
 
 <template>
@@ -45,7 +44,7 @@ defineProps({
                     </div>
                 </div>
                 <div>
-                    <img src="/placeholder/batas-dusun-rt-rw.jpg" class="img-fluid" alt="" srcset="">
+                    <img src="/img/batas-dusun-rt-rw-desa-kaputihan.png" class="img-fluid" alt="" srcset="">
                 </div>
             </div>
         </section>

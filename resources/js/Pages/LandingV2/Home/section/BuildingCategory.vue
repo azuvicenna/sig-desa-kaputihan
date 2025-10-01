@@ -1,21 +1,30 @@
-<script setup>
+<script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import type { Category, ApiResponse } from './types';
 
-let loading = ref(false);
-let categories = ref([]);
-let currentPage = ref(1);
-const endpoint = route('landing.buildingCategories');
-let hasMorePages = ref(true);
+const loading = ref < boolean > (false);
+const categories = ref < Category[] > ([]); 
+const currentPage = ref < number > (1);
+const hasMorePages = ref < boolean > (true);
 const icon = '<i class="bi bi-arrow-right-circle-fill"></i>'
 
-const getCategories = async () => {
+declare function route(name: string): string;
+const endpoint = route('landing.buildingCategories');
+
+
+const getCategories = async (): Promise<void> => {
+    if (!hasMorePages.value) return; 
     loading.value = true;
 
     try {
-        const response = await axios.get(`${endpoint}?page=${currentPage.value}`);
-        categories.value.push(...response.data.data);
+        const response = await axios.get < ApiResponse > (`${endpoint}?page=${currentPage.value}`);
+
+        if (response.data && response.data.data) {
+            categories.value.push(...response.data.data);
+        }
+
         hasMorePages.value = response.data.next_page_url !== null;
     } catch (error) {
         console.error("Gagal mengambil data dari API:", error);
@@ -26,10 +35,11 @@ const getCategories = async () => {
 
 onMounted(() => {
     getCategories();
-})
+});
 
-const seeMoreCategories = () => {
-    currentPage.value += 1;
+const seeMoreCategories = (): void => {
+    if (loading.value) return; 
+    currentPage.value++;
     getCategories();
 }
 </script>
@@ -55,7 +65,7 @@ const seeMoreCategories = () => {
                             <p>
                                 {{ item.deskripsi }}
                             </p>
-                            <p class="fw-bold">Jumlah: {{ item.buildings_count  }}</p>
+                            <p class="fw-bold">Jumlah: {{ item.buildings_count }}</p>
                         </div>
                         <Link class="special-link d-inline-flex gap-2 align-items-center text-decoration-none"
                             :href="route('landing.buildings', item.id)">

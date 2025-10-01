@@ -1,28 +1,17 @@
-<script setup>
+<script setup lang="ts">
 import FullCalendar from '@fullcalendar/vue3';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import idLocale from '@fullcalendar/core/locales/id';
+import type { PagePropsSchedule } from './types';
 
-const props = defineProps({
-  endpoint: {
-    type: String,
-    default: '/'
-  },
-  start: {
-    type: String,
-    default: ''
-  },
-  center: {
-    type: String,
-    default: ''
-  },
-  end: {
-    type: String,
-    default: ''
-  }
+const props = withDefaults(defineProps<PagePropsSchedule>(), {
+  endpoint: '/', 
+  start: '',
+  center: '',
+  end: '',
 });
 
-const calendarOptions = {
+const calendarOptions: any = {
   plugins: [dayGridPlugin],
   initialView: 'dayGridMonth',
   locale: idLocale,
@@ -33,7 +22,7 @@ const calendarOptions = {
     center: props.center,      // Tengah dikosongkan
     end: props.end   // Tombol 'today' di kanan (tanpa panah prev/next)
   },
-  eventContent: function (info) {
+  eventContent: function (info: any) {
     console.log(info.event.extendedProps);
 
     let bgColor = '';

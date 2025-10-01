@@ -1,51 +1,63 @@
-<script setup>
-import { onMounted, ref } from 'vue'
+<script setup lang="ts">
+import { onMounted, computed } from 'vue'
 import L from 'leaflet'
 import axios from 'axios'
+import type { Feature, GeoJsonObject } from 'geojson';
+import type { Location, GeoJSONProperties } from './types';
 
-const props = defineProps({
-  height: Number
-})
+const props = withDefaults(defineProps < {
+  height?: number
+} > (), {
+  height: 500
+});
 
-const style = {
+const style = computed(() => ({
   height: `${props.height}px`
-}
-const markersList = ref([]);
+}));
 
 onMounted(async () => {
-  const map = L.map('map', { scrollWheelZoom: false }).setView([-7.46706, 108.256], 15);
+  const map: L.Map = L.map('map', { scrollWheelZoom: false }).setView([-7.46706, 108.256], 15);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+    attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
-  fetch('/geojson/kaputihan.geojson')
-    .then(response => response.json())
-    .then(data => {
-      L.geoJSON(data, {
-        style: function (feature) {
-          if (feature.properties.NAMOBJ === "Kaputihan") {
-            return { color: "red", fillColor: "green" };
-          } else if (feature.properties.REMARK?.includes("Jalan")) {
-            return { color: "#FFD700", weight: 2 };
-          } else {
-            return { color: "#F4A582", fillColor: "#F4A582" };
-          }
-        },
-        onEachFeature: function (feature, layer) {
+  try {
+    const response = await fetch('/geojson/kaputihan.geojson');
+    const data: GeoJsonObject = await response.json();
+
+    L.geoJSON(data, {
+      style: (feature?: Feature<any, GeoJSONProperties>) => {
+        if (!feature) return {};
+        const properties = feature.properties;
+
+        if (properties.NAMOBJ === "Kaputihan") {
+          return { color: "red", fillColor: "green" };
+        } else if (properties.REMARK?.includes("Jalan")) {
+          return { color: "#FFD700", weight: 2 };
+        } else {
+          return { color: "#F4A582", fillColor: "#F4A582" };
+        }
+      },
+      onEachFeature: (feature: Feature<any, GeoJSONProperties>, layer: L.Layer) => {
+        if (feature.properties && feature.properties.OBJECT) {
           layer.bindPopup(feature.properties.OBJECT);
         }
-      }).addTo(map);
-    });
+      }
+    }).addTo(map);
+  } catch (error) {
+    console.error("Gagal memuat file GeoJSON:", error);
+  }
 
-  const getIcon = (color) => {
+  const getIcon = (color: string): L.Icon => {
     return L.icon({
-      iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${color}.png`,
+      iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
       shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
-      popupAnchor: [1, -34]
-    })
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
   };
 
   L.marker([-7.465070961927788, 108.24454005036246], { icon: getIcon('red') })
@@ -53,20 +65,19 @@ onMounted(async () => {
     .bindPopup(`
       <b>Kantor Kepala Desa Kaputihan</b><br><br>
       <div class="d-flex justify-content-center">
-      <a href="https://maps.app.goo.gl/UK8vaKNgGqmus36D9" target="_blank">
-      <button class="btn btn-sm btn-primary">
-        Buka di Google Maps
-      </button>
-      </a>
+        <a href="https://maps.google.com/?q=-7.465070961927788,108.24454005036246" target="_blank">
+          <button class="btn btn-sm btn-primary">
+            Buka di Google Maps
+          </button>
+        </a>
       </div>
     `)
     .openPopup();
 
-
   try {
-    const response = await axios.get(route('admin.locationList'));
+    const response = await axios.get < Location[] > (route('admin.locationList'));
 
-    response.data.forEach((lokasi) => {
+    response.data.forEach((lokasi: Location) => {
       L.marker([lokasi.latitude, lokasi.longitude], { icon: getIcon(lokasi.warna) })
         .addTo(map)
         .bindPopup(`
@@ -93,7 +104,7 @@ onMounted(async () => {
 <style>
 @import 'leaflet/dist/leaflet.css';
 
-.leaflet-control-attribution{
+.leaflet-control-attribution {
   display: none;
 }
 </style>

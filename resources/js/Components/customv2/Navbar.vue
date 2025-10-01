@@ -1,10 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
 const page = usePage();
-const village = computed(() => page.props.village);
-const user = computed(() => usePage().props.auth.user);
+const village: any = computed(() => page.props.village);
+const user: any = computed(() => usePage().props.auth.user);
 </script>
 
 <template>
@@ -31,37 +31,44 @@ const user = computed(() => usePage().props.auth.user);
                 <div class="offcanvas-body align-items-lg-center">
                     <ul class="navbar-nav nav me-auto ps-lg-5 mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <Link class="nav-link scroll-link" :class="{ 'active': $page.url === '/' }"
+                            <Link class="nav-link scroll-link" :class="{ 'active': page.url === '/' }"
                                 aria-current="page" :href="route('landing.home')">
                             Home
                             </Link>
                         </li>
                         <li class="nav-item">
                             <Link class="nav-link scroll-link"
-                                :class="{ 'active': $page.url.startsWith('/batas-wilayah') }"
+                                :class="{ 'active': page.url.startsWith('/batas-wilayah') }"
                                 :href="route('landing.map')">
                             Batas Wilayah
                             </Link>
                         </li>
                         <li class="nav-item">
                             <Link class="nav-link scroll-link"
-                                :class="{ 'active': $page.url.startsWith('/statistik-desa') }"
+                                :class="{ 'active': page.url.startsWith('/statistik-desa') }"
                                 :href="route('landing.statistics')">
                             Statistik Desa
                             </Link>
                         </li>
                         <li class="nav-item">
                             <Link class="nav-link scroll-link"
-                                :class="{ 'active': $page.url.startsWith('/bangunan-desa') }"
+                                :class="{ 'active': page.url.startsWith('/bangunan-desa') }"
                                 :href="route('landing.buildings')">
                             Bangunan Desa
                             </Link>
                         </li>
                         <li class="nav-item">
                             <Link class="nav-link scroll-link"
-                                :class="{ 'active': $page.url.startsWith('/jadwal-kegiatan') }"
+                                :class="{ 'active': page.url.startsWith('/jadwal-kegiatan') }"
                                 :href="route('landing.schedule')">
                             Jadwal Kegiatan
+                            </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link class="nav-link scroll-link"
+                                :class="{ 'active': page.url.startsWith('/berita') }"
+                                :href="route('landing.schedule')">
+                            Berita
                             </Link>
                         </li>
                     </ul>

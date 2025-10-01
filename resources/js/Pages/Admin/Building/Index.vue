@@ -16,10 +16,12 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
 import BuildingTable from '@/Components/custom/building/BuildingTable.vue';
 
-defineProps({
-  title: String,
-  categoryID: String,
-})
+interface Props {
+  title: string
+  categoryID: string
+}
+
+defineProps<Props>()
 
 const showDialog = ref<boolean>(false);
 const selectedId = ref<string | null>(null);

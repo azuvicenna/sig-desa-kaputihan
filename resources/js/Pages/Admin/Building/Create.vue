@@ -4,11 +4,12 @@ import { Head, Link } from '@inertiajs/vue3'
 import Button from '@/components/ui/button/Button.vue'
 import CreateBuilding from '@/Components/custom/building/CreateBuilding.vue'
 
-defineProps({
-    title: String,
-    categoryID: String,
-})
+interface Props {
+  title: string
+  categoryID: string
+}
 
+defineProps<Props>()
 </script>
 
 <template>

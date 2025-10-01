@@ -23,12 +23,12 @@ class LandingController extends Controller
     {
         $title = 'Selamat Datang di Sistem Infromasi Geografis Desa Kaputihan';
 
-        $landingPageData = [
+        $data = [
             'villageProfile' => $this->landingService->getVillageProfile(),
             'setting' => $this->landingService->getSetting(),
         ];
 
-        return Inertia::render('LandingV2/Home/Index', compact('title', 'landingPageData'));
+        return Inertia::render('LandingV2/Home/Index', compact('title', 'data'));
     }
 
     public function territoryBoundary()

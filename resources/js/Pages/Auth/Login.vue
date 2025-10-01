@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { buttonVariants } from '@/Components/ui/button'
 import UserAuthForm from '@/Components/custom/auth/UserAuthForm.vue'
 import { Head } from '@inertiajs/vue3';
 
@@ -39,7 +38,7 @@ defineProps({
         </div>
         <UserAuthForm />
         <p class="px-8 text-center text-sm text-muted-foreground">
-          <a href="/" target="_blank" class="hover:text-primary">
+          <a href="/" class="hover:text-primary">
             Kembali ke halaman utama
           </a>
         </p>

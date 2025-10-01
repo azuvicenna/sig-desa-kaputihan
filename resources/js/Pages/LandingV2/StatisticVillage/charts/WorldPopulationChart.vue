@@ -1,12 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import * as echarts from 'echarts';
-// 1. Perbaiki typo import dan tambahkan 'ref'
+import type { PagePropsWithData } from '../../types';
 import { ref, onMounted, onUnmounted } from 'vue';
 
-const props = defineProps({
-    title: String,
-    data: Object,
-})
+const props = defineProps<PagePropsWithData>()
 
 // Siapkan ref untuk elemen DOM
 const chartRef = ref(null);

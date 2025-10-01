@@ -1,7 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import LandingV2 from '@/Layouts/LandingV2.vue';
 import FullCalendar from '@/Components/customv2/Schedule.vue';
+import type { PageProps } from '../types';
 
 const date = new Date();
 const year = date.getFullYear();
@@ -9,9 +10,7 @@ const month = new Intl.DateTimeFormat('id-ID', {
     month: 'long'
 }).format(date);
 
-defineProps({
-    title: String
-})
+defineProps<PageProps>()
 </script>
 
 <template>

@@ -1,9 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
 const page = usePage();
-const village = computed(() => page.props.village);
+const village: any = computed(() => page.props.village);
 
 const year = new Date().getFullYear();
 </script>
@@ -18,6 +18,27 @@ const year = new Date().getFullYear();
                         Nama Desa Kaputihan di Jatiwaras, Tasikmalaya, berasal dari fenomena
                         keramat "nampak putih" yang muncul di makam leluhurnya, Entol Wiraha, pada tahun 1912.
                     </p>
+                    <div class="d-flex align-items-center mt-4">
+                        <div class="me-4">
+                            <a href="#"> <img src="/img/logo-bsi.png" alt="Deskripsi Logo 1" class="img-fluid"
+                                    style="max-height: 50px;">
+                            </a>
+                        </div>
+
+                        <div class="me-4">
+                            <a href="#">
+                                <img src="/img/logo-diktisaintek.png" alt="Deskripsi Logo 2" class="img-fluid"
+                                    style="max-height: 50px;">
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="#">
+                                <img src="/img/logo-kabupaten-tasik.png" alt="Deskripsi Logo 3" class="img-fluid"
+                                    style="max-height: 50px;">
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-7">
                     <div class="row g-2">
@@ -48,6 +69,9 @@ const year = new Date().getFullYear();
                                 <li>
                                     <a :href="route('landing.home') + '#report'">Laporkan Masalah</a>
                                 </li>
+                                <li>
+                                    <a :href="route('landing.home') + '#sponsors'">Sponsor</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
@@ -64,6 +88,12 @@ const year = new Date().getFullYear();
                                 </li>
                                 <li>
                                     <Link :href="route('landing.buildings')">Bangunan Desa</Link>
+                                </li>
+                                <li>
+                                    <Link :href="route('landing.schedule')">Jadwal Kegiatan</Link>
+                                </li>
+                                <li>
+                                    <Link :href="route('landing.buildings')">Berita</Link>
                                 </li>
                             </ul>
                         </div>
