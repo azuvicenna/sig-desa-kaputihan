@@ -17,9 +17,8 @@ return new class extends Migration
             $table->string('judul');
             $table->string('thumbnail');
             $table->text('content');
-            $table->text('slug')->index();
+            $table->string('slug')->index();
             $table->enum('status', ['published', 'draf'])->default('draf');
-            $table->timestamp('published_at');
             $table->timestamps();
         });
     }

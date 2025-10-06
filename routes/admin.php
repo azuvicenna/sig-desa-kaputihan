@@ -119,6 +119,8 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
         Route::prefix('berita')->controller(NewsController::class)->group(function(){
             Route::get('/', 'index')->name('news');
+            // Route::get('/', 'index')->name('newsEdit');
+            // Route::get('/', 'index')->name('newsDestroy');
         });
 
         Route::prefix('profile')->controller(ProfileController::class)->group(function () {
@@ -159,9 +161,9 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             [UserDatatableController::class, 'getUsers']
         )->name('users');
         Route::get(
-            'daftar-berita/{status}',
+            'daftar-berita',
             [NewsDatatableController::class, 'getNews']
-        )->name('users');
+        )->name('news');
 
 
         Route::get(

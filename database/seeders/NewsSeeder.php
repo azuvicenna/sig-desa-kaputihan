@@ -24,7 +24,6 @@ class NewsSeeder extends Seeder
             'slug' => Str::slug($judul),
             'thumbnail' => 'thumbnail.jpg',
             'status' => 'draf',
-            'published_at' => now(),
         ]);
     }
 }

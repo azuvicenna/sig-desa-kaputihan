@@ -5,12 +5,13 @@ onMounted(() => {
     $('#myTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: route('datatable.categories'),
+        ajax: route('datatable.news'),
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-            { data: 'nama_kategori', name: 'nama_kategori' },
-            { data: 'icon', name: 'icon' },
-            { data: 'deskripsi', name: 'deskripsi' },
+            { data: 'thumbnail', name: 'thumbnail' },
+            { data: 'judul', name: 'judul' },
+            { data: 'penulis', name: 'penulis' },
+            { data: 'status', name: 'status' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ]
     });
@@ -23,9 +24,10 @@ onMounted(() => {
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama Kategori</th>
-                    <th>Icon</th>
-                    <th>Deskripsi</th>
+                    <th>Thumbnail</th>
+                    <th>Judul</th>
+                    <th>Penulis</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>

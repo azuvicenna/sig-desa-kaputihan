@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head, router } from '@inertiajs/vue3';
+import { Head, router, Link } from '@inertiajs/vue3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
-import FormCategory from '@/Components/custom/category/FormCategory.vue';
 import { onMounted, onUnmounted, ref } from 'vue'
 import {
     AlertDialog,
@@ -14,7 +13,7 @@ import {
     AlertDialogCancel,
     AlertDialogAction
 } from "@/Components/ui/alert-dialog";
-import Table from '@/Components/custom/category/Table.vue';
+import Table from '@/Components/custom/news/Table.vue';
 
 defineProps<{
     title: string,
@@ -32,7 +31,7 @@ const confirmDelete = (id: string | null): void => {
 
 const deleteData = (): void => {
     if (!selectedId.value) return;
-    router.delete(route("admin.categoryDestroy", selectedId.value), {
+    router.delete(route("admin.newsDestroy", selectedId.value), {
         onFinish: () => {
             showDialog.value = false;
             selectedId.value = null;
@@ -41,13 +40,13 @@ const deleteData = (): void => {
 };
 
 const redirectToDetail = (id: string) => {
-    router.visit(route('admin.building', id), {
+    router.visit(route('admin.news'), {
         preserveState: false
     })
 }
 
 const redirectToEdit = (id: string) => {
-    router.visit(route('admin.categoryEdit', id), {
+    router.visit(route('admin.newsEdit', id), {
         preserveState: false
     })
 }
@@ -85,7 +84,9 @@ onUnmounted(() => {
                 {{ title }}
             </h2>
             <div class="flex items-center space-x-2">
-                <FormCategory />
+                <Link href="">
+                <Button class="shadcn-btn edit-btn"><i class="fa-solid fa-plus"></i> Buat Berita</Button>
+                </Link>
             </div>
         </template>
         <Card>

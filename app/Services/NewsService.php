@@ -12,4 +12,9 @@ class NewsService
     {
         $this->newsRepository = $newsRepository;
     }
+
+    public function getNews()
+    {
+        return $this->newsRepository->news();
+    }
 }
