@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\NewsRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class NewsController extends Controller
@@ -22,9 +24,14 @@ class NewsController extends Controller
         return Inertia::render('Admin/News/Create', compact('title'));
     }
 
-    public function store()
+    public function store(NewsRequest $request)
     {
-        
+        $validatedData = $request->validated();
+
+        $validatedData['slug'] = Str::slug($validatedData);
+        $validatedData['user_id'] = Auth::user()->id;
+
+        // belum kelar
     }
 
     public function show()

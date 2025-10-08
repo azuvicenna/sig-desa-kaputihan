@@ -3,7 +3,7 @@ import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
 import Button from '@/components/ui/button/Button.vue';
 import CreateNews from '@/Components/custom/news/CreateNews.vue';
-import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
+import { Card, CardContent } from '@/Components/ui/card';
 
 defineProps<{
     title: string,
@@ -20,7 +20,7 @@ defineProps<{
                 {{ title }}
             </h2>
             <div class="flex items-center space-x-2">
-                <Link :href="route('admin.category')">
+                <Link :href="route('admin.news')">
                 <Button class="shadcn-btn back-btn">Kembali</Button>
                 </Link>
             </div>
