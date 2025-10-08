@@ -23,7 +23,7 @@ class NewsSeeder extends Seeder
             'content' => 'belum tersedia',
             'slug' => Str::slug($judul),
             'thumbnail' => 'thumbnail.jpg',
-            'status' => 'draf',
+            'status' => 'Draf',
         ]);
     }
 }

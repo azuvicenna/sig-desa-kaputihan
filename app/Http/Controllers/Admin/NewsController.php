@@ -15,6 +15,13 @@ class NewsController extends Controller
         return Inertia::render('Admin/News/Index', compact('title'));
     }
 
+    public function create()
+    {
+        $title = 'Buat Berita Kegiatan';
+        
+        return Inertia::render('Admin/News/Create', compact('title'));
+    }
+
     public function store()
     {
         

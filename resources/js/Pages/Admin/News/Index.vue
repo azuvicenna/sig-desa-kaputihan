@@ -84,7 +84,7 @@ onUnmounted(() => {
                 {{ title }}
             </h2>
             <div class="flex items-center space-x-2">
-                <Link href="">
+                <Link :href="route('admin.newsCreate')">
                 <Button class="shadcn-btn edit-btn"><i class="fa-solid fa-plus"></i> Buat Berita</Button>
                 </Link>
             </div>

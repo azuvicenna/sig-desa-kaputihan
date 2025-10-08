@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignUuid('user_id')->constrained('users', 'id')->cascadeOnDelete();
             $table->string('judul');
             $table->string('thumbnail');
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->string('slug')->index();
-            $table->enum('status', ['published', 'draf'])->default('draf');
+            $table->enum('status', ['Published', 'Draf'])->default('draf');
             $table->timestamps();
         });
     }
