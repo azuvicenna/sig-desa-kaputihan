@@ -69,7 +69,7 @@ const onSubmit = handleSubmit((values) => {
                 </DialogDescription>
             </DialogHeader>
 
-            <form id="add-schedule-form" class="flex-1 overflow-y-auto space-y-4 py-4 pl-1 pr-6" @submit="onSubmit">
+            <form class="flex-1 overflow-y-auto space-y-4 py-4 pl-1 pr-6" @submit="onSubmit">
                 <FormField v-slot="{ componentField }" name="nama_kategori">
                     <FormItem>
                         <FormLabel>Nama Kategori</FormLabel>

@@ -106,7 +106,7 @@ const onSubmit = handleSubmit((values) => {
 
 <template>
     <div class="flex flex-col gap-8 md:flex-row">
-        <form id="add-schedule-form" class="w-full md:w-1/2 space-y-6" @submit="onSubmit">
+        <form class="w-full md:w-1/2 space-y-6" @submit="onSubmit">
             <img :src="previewUrl ?? '/placeholder/blog.svg'" alt="" srcset=""
                 style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
             <FormField v-slot="{ componentField }" name="foto_bangunan">

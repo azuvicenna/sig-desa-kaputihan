@@ -88,7 +88,7 @@ const onSubmit = handleSubmit((values) => {
     <div class="flex-1 overflow-y-auto space-y-4 py-6">
         <form @submit="onSubmit">
             <FormField name="thumbnail">
-                <div v-if="thumbnailPreview" class="mt-4 border w-full rounded-md p-2 w-fit">
+                <div v-if="thumbnailPreview" class="mt-4 border w-full rounded-md p-2">
                     <p class="text-sm font-medium mb-2">Preview:</p>
                     <div class="flex justify-center">
                         <img :src="thumbnailPreview" alt="Preview Thumbnail"
