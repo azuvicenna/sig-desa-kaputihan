@@ -15,6 +15,10 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
         Route::get('detail/{slug}', 'detailBuilding')->name('landing.detailBuilding');
     });
     Route::get('jadwal-kegiatan', 'schedule')->name('landing.schedule');
+    Route::prefix('berita-desa')->group(function(){
+        Route::get('/', 'news')->name('landing.news');
+        Route::get('/{slug}', 'readNews')->name('landing.readNews');
+    });
 });
 
 Route::controller(APIController::class)->group(function(){

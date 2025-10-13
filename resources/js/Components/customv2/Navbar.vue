@@ -66,9 +66,9 @@ const user: any = computed(() => usePage().props.auth.user);
                         </li>
                         <li class="nav-item">
                             <Link class="nav-link scroll-link"
-                                :class="{ 'active': page.url.startsWith('/berita') }"
-                                :href="route('landing.schedule')">
-                            Berita
+                                :class="{ 'active': page.url.startsWith('/berita-desa') }"
+                                :href="route('landing.news')">
+                            Berita Desa
                             </Link>
                         </li>
                     </ul>

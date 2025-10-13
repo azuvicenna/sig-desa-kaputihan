@@ -17,4 +17,9 @@ class NewsService
     {
         return $this->newsRepository->news();
     }
+
+    public function paginatedResult($search)
+    {
+        return $this->newsRepository->paginated($search);
+    }
 }

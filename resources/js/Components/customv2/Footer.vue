@@ -93,7 +93,7 @@ const year = new Date().getFullYear();
                                     <Link :href="route('landing.schedule')">Jadwal Kegiatan</Link>
                                 </li>
                                 <li>
-                                    <Link :href="route('landing.buildings')">Berita</Link>
+                                    <Link :href="route('landing.buildings')">Berita Desa</Link>
                                 </li>
                             </ul>
                         </div>

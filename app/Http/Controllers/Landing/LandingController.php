@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Landing;
 use App\Http\Controllers\Controller;
 use App\Services\BuildingService;
 use App\Services\LandingService;
+use App\Services\NewsService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,11 +13,13 @@ class LandingController extends Controller
 {
     protected $landingService;
     protected $buildingService;
+    protected $newsService;
 
-    public function __construct(LandingService $landingService, BuildingService $buildingService)
+    public function __construct(LandingService $landingService, BuildingService $buildingService, NewsService $newsService)
     {
         $this->landingService = $landingService;
         $this->buildingService = $buildingService;
+        $this->newsService = $newsService;
     }
 
     public function index()
@@ -53,6 +56,16 @@ class LandingController extends Controller
         $filters = $request->only('search');
 
         return Inertia::render('LandingV2/Buildings/Index', compact('title', 'buildings', 'filters'));
+    }
+
+    public function news(Request $request)
+    {
+        $title = 'Baca berita Desa Kaputihan';
+        $search = $request->input('search');
+        $newsList = $this->newsService->paginatedResult($search);
+        $filters = $request->only('search');
+
+        return Inertia::render('LandingV2/News/Index', compact('title', 'newsList', 'filters'));
     }
 
     public function detailBuilding(string $slug)
