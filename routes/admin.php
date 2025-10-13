@@ -120,7 +120,8 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
         Route::prefix('berita')->controller(NewsController::class)->group(function(){
             Route::get('/', 'index')->name('news');
             Route::get('/tambah-berita', 'create')->name('newsCreate');
-            // Route::get('/', 'index')->name('newsEdit');
+            Route::get('/edit-berita/{id}', 'edit')->name('newsEdit');
+            Route::post('/simpan-berita/{id}', 'store')->name('newsSave');
             // Route::get('/', 'index')->name('newsDestroy');
         });
 

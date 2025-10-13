@@ -2,11 +2,12 @@
 import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
 import Button from '@/components/ui/button/Button.vue';
-import CreateNews from '@/Components/custom/news/CreateNews.vue';
+import EditNews from '@/Components/custom/news/EditNews.vue';
 import { Card, CardContent } from '@/Components/ui/card';
 
 defineProps<{
     title: string,
+    news: any
 }>()
 
 </script>
@@ -27,7 +28,7 @@ defineProps<{
         </template>
         <Card>
             <CardContent>
-                <CreateNews />
+                <EditNews :data="news"/>
             </CardContent>
         </Card>
     </App>
