@@ -22,7 +22,6 @@ class NewsPhotosRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'news_id' => 'required|exists:news,id',
             'image_name' => 'required|array',
             'image_name.*' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ];

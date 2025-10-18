@@ -24,7 +24,7 @@ class NewsRequest extends FormRequest
         return [
             'judul' => 'required|string|max:255',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'content' => 'required|string|nullable',
+            'content' => 'nullable|string',
             'status' => 'required|in:Published,Draf',
         ];
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
 use App\Services\BuildingService;
 use App\Services\LandingService;
 use App\Services\NewsService;
@@ -66,6 +67,17 @@ class LandingController extends Controller
         $filters = $request->only('search');
 
         return Inertia::render('LandingV2/News/Index', compact('title', 'newsList', 'filters'));
+    }
+
+    public function readNews($slug)
+    {
+        $news = News::where('slug', $slug)
+            ->with(['user', 'newsPhotos'])->firstOrFail();
+
+        return Inertia::render('LandingV2/News/ReadNews', [
+            'data' => $news,
+            'title' => $news->judul 
+        ]);
     }
 
     public function detailBuilding(string $slug)

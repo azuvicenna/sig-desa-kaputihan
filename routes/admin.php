@@ -121,8 +121,11 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             Route::get('/', 'index')->name('news');
             Route::get('/tambah-berita', 'create')->name('newsCreate');
             Route::get('/edit-berita/{id}', 'edit')->name('newsEdit');
-            Route::post('/simpan-berita/{id}', 'store')->name('newsSave');
-            // Route::get('/', 'index')->name('newsDestroy');
+            Route::post('/simpan-berita', 'store')->name('newsSave');
+            Route::put('/update-berita/{id}', 'update')->name('newsUpdate');
+            Route::delete('/hapus-berita/{id}', 'destroy')->name('newsDestroy');
+            Route::post('/simpan-foto-berita/{id}', 'storeImages')->name('saveNewsStoreImages');
+            Route::delete('/hapus-foto-berita/{id}', 'deleteImage')->name('deleteNewsImage');
         });
 
         Route::prefix('profile')->controller(ProfileController::class)->group(function () {

@@ -13,7 +13,7 @@ import { useForm } from 'vee-validate'
 import * as z from 'zod'
 import { router } from '@inertiajs/vue3'
 import TiptapEditor from '@/Components/custom/news/TipTapEditor.vue';
-import { ref, onUnmounted, type Ref } from 'vue';
+import { ref, onUnmounted, type Ref, computed } from 'vue';
 import {
     Select,
     SelectContent,
@@ -25,6 +25,10 @@ import {
 const props = defineProps<{
     data: any
 }>()
+
+const existingPhotos = computed(() => {
+    return props.data.news_photos || [];
+});
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
@@ -40,10 +44,22 @@ const formSchema = toTypedSchema(z.object({
     status: z.enum(['Draf', 'Published'], {
         required_error: 'Status berita wajib diisi.',
     }),
-    thumbnail: z
-        .instanceof(File, { message: 'Thumbnail wajib diisi.' })
-        .refine((file) => file.size <= MAX_FILE_SIZE, `Ukuran file maksimal adalah 2 MB.`)
-        .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), "Format file harus .jpg, .jpeg, atau .png")
+    thumbnail: z.any()
+        .optional()
+        .refine((file) => {
+            if (!file || typeof file === 'string') {
+                return true;
+            }
+
+            return file.size <= MAX_FILE_SIZE;
+        }, `Ukuran file maksimal adalah 2 MB.`)
+        .refine((file) => {
+            if (!file || typeof file === 'string') {
+                return true;
+            }
+
+            return ACCEPTED_IMAGE_TYPES.includes(file.type);
+        }, "Format file harus .jpg, .jpeg, atau .png"),
 }));
 
 const { handleSubmit, setErrors, setFieldValue, validateField } = useForm({
@@ -52,7 +68,7 @@ const { handleSubmit, setErrors, setFieldValue, validateField } = useForm({
         judul: props.data.judul,
         content: props.data.content,
         status: props.data.status,
-        thumbnail: props.data.thumbnail
+        thumbnail: null
     }
 });
 
@@ -80,12 +96,23 @@ onUnmounted(() => {
 });
 
 const onSubmit = handleSubmit((values) => {
-    router.post(route('admin.newsSave'), values, {
+    router.post(route('admin.newsUpdate', props.data.id), {
+        ...values,
+        _method: 'PUT',
+    }, {
         onError: (backendErrors) => {
             setErrors(backendErrors);
         }
     });
 });
+
+const removeExistingFile = (photoId: string) => {
+    if (confirm('Apakah Anda yakin ingin menghapus gambar ini secara permanen?')) {
+        router.delete(route('admin.deleteNewsImage', photoId), {
+            preserveScroll: true,
+        });
+    }
+};
 
 // multiple upload
 interface FileWrapper {
@@ -131,12 +158,16 @@ const handleUpload = (): void => {
 
     const formData = new FormData();
     files.value.forEach(wrapper => {
-        formData.append('images[]', wrapper.file);
+        formData.append('image_name[]', wrapper.file);
     });
 
-    formData.forEach((value, key) => {
-        const file = value as File;
-        console.log(`${key}: ${file.name}`);
+    router.post(route('admin.saveNewsStoreImages', props.data.id), formData, {
+        onSuccess: () => {
+            files.value = [];
+        },
+        onError: (errors) => {
+            console.error(errors);
+        }
     });
 };
 
@@ -203,16 +234,14 @@ onUnmounted(() => {
                     <FormMessage />
                 </FormItem>
             </FormField>
+            <div class="flex justify-end mt-6">
+                <Button type="submit" class="shadcn-btn edit-btn">Simpan Berita</Button>
+            </div>
         </form>
-
-        <div class="flex justify-end">
-            <Button type="submit" class="shadcn-btn edit-btn">Simpan Berita</Button>
-        </div>
     </div>
 
     <div class="flex-1 overflow-y-auto space-y-4 py-6">
         <form @submit.prevent="handleUpload">
-
             <div class="flex flex-col items-center justify-center p-8 text-center border-2 border-dashed rounded-lg cursor-pointer transition-colors duration-300 ease-in-out"
                 :class="isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-gray-50 hover:border-blue-400'"
                 @click="fileInput?.click()" @dragenter.prevent="isDragging = true" @dragover.prevent="isDragging = true"
@@ -229,7 +258,21 @@ onUnmounted(() => {
                 </div>
             </div>
 
-            <div v-if="files.length > 0" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6">
+            <div v-if="existingPhotos.length > 0 || files.length > 0"
+                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6">
+
+                <div v-for="photo in existingPhotos" :key="photo.id"
+                    class="relative group p-2 border border-gray-200 rounded-md bg-white shadow-sm flex items-center justify-center min-h-[100px]">
+
+                    <img :src="`/storage/foto-berita/${photo.image_name}`" :alt="photo.image_name" class="w-20" />
+
+                    <div @click="removeExistingFile(photo.id)"
+                        class="absolute top-0 right-0 flex items-center justify-center w-6 h-6 text-white bg-red-500 rounded-full cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
+                        title="Hapus gambar permanen">
+                        &#10005;
+                    </div>
+                </div>
+
                 <div v-for="(file, index) in files" :key="file.url"
                     class="relative group p-2 border border-gray-200 rounded-md bg-white shadow-sm flex items-center justify-center min-h-[100px]">
                     <img :src="file.url" :alt="file.file.name" class="w-20" />
@@ -239,9 +282,10 @@ onUnmounted(() => {
                         &#10005;
                     </div>
                 </div>
+
             </div>
 
-            <div class="flex justify-end pt-6">
+            <div class="flex justify-end mt-6">
                 <Button type="submit" :disabled="files.length === 0" class="shadcn-btn edit-btn">
                     Simpan Dokumentasi
                 </Button>

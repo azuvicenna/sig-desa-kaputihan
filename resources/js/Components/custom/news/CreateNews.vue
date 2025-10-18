@@ -76,7 +76,7 @@ onUnmounted(() => {
 });
 
 const onSubmit = handleSubmit((values) => {
-    router.post(route('admin.categorySave'), values, {
+    router.post(route('admin.newsSave'), values, {
         onError: (backendErrors) => {
             setErrors(backendErrors);
         }
@@ -86,7 +86,7 @@ const onSubmit = handleSubmit((values) => {
 
 <template>
     <div class="flex-1 overflow-y-auto space-y-4 py-6">
-        <form @submit="onSubmit">
+        <form @submit.prevent="onSubmit">
             <FormField name="thumbnail">
                 <div v-if="thumbnailPreview" class="mt-4 border w-full rounded-md p-2">
                     <p class="text-sm font-medium mb-2">Preview:</p>
@@ -142,10 +142,10 @@ const onSubmit = handleSubmit((values) => {
                     <FormMessage />
                 </FormItem>
             </FormField>
-        </form>
 
-        <div class="flex justify-end">
-            <Button type="submit" form="add-schedule-form" class="shadcn-btn edit-btn">Simpan Berita</Button>
-        </div>
+            <div class="flex justify-end mt-6">
+                <Button type="submit" class="shadcn-btn edit-btn">Simpan Berita</Button>
+            </div>
+        </form>
     </div>
 </template>
