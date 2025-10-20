@@ -29,7 +29,7 @@ const props = defineProps<{
 }>()
 
 const previewLogo = ref<string>(props.setting.logo ? `/storage/${props.setting.logo}` : '/placeholder/logo-desa.webp')
-const previewOrganisasi = ref<string>(props.setting.foto_organisasi ? `/storage/${props.setting.foto_organisasi}` : '/placeholder/organisasi.png')
+const previewOrganisasi = ref<string>(props.setting.foto_organisasi ? `/storage/foto_organisasi/${props.setting.foto_organisasi}` : '/placeholder/organisasi.png')
 
 onBeforeUnmount(() => {
     if (previewOrganisasi.value || previewLogo.value) {
