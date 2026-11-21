@@ -21,7 +21,7 @@ class LandingLayoutMiddleware
 
         Inertia::share([
             'village' => function () {
-                return Setting::select(['email', 'telepon'])->first();
+                return Setting::select(['email', 'telepon', 'logo'])->first();
             }
         ]);
 

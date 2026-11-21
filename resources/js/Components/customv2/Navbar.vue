@@ -11,7 +11,7 @@ const user: any = computed(() => usePage().props.auth.user);
     <header class="fbs__net-navbar navbar navbar-expand-lg dark">
         <div class="container d-flex align-items-center justify-content-between">
             <a class="navbar-brand w-auto" href="">
-                <img class="logo dark img-fluid" :src="`/placeholder/${village.logo ?? 'logo-desa.webp'}`" width="120">
+                <img class="logo dark img-fluid" :src="village?.logo ? `/storage/${village.logo}` : '/placeholder/logo-desa.webp'" width="120">
             </a>
 
             <div class="offcanvas offcanvas-start w-75" id="fbs__net-navbars" tabindex="-1"
@@ -19,7 +19,7 @@ const user: any = computed(() => usePage().props.auth.user);
                 <div class="offcanvas-header">
                     <div class="offcanvas-header-logo">
                         <a class="logo-link" id="fbs__net-navbarsLabel" href="">
-                            <img class="logo dark img-fluid" :src="`/placeholder/${village.logo ?? 'logo-desa.webp'}`" width="120">
+                            <img class="logo dark img-fluid" :src="village?.logo ? `/storage/${village.logo}` : '/placeholder/logo-desa.webp'" width="120">
                         </a>
                     </div>
 
